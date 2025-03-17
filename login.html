@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - BlockShare</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="auth-page">
+  <div class="minecraft-bg"></div>
+  
+  <div class="auth-container">
+    <div class="auth-card block-appear">
+      <div class="auth-header">
+        <a href="index.html" class="logo auth-logo">
+          <div class="logo-block"></div>
+          <h1>BlockShare</h1>
+        </a>
+        <p class="auth-subtitle">Share your Minecraft progress with the world!</p>
+      </div>
+      
+      <div class="auth-content">
+        <h2>Login to Your Account</h2>
+        
+        <div class="auth-options">
+          <button id="googleSignInBtn" class="btn btn-google">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" class="google-icon">
+            <span>Sign in with Google</span>
+          </button>
+          
+          <div class="auth-divider">
+            <span>or</span>
+          </div>
+          
+          <form id="loginForm" class="auth-form">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="steve@minecraft.net" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+            
+            <div class="form-group form-checkbox">
+              <input type="checkbox" id="remember" name="remember">
+              <label for="remember">Remember me</label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </form>
+          
+          <div class="auth-links">
+            <a href="#" class="auth-link">Forgot password?</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="auth-footer">
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+      </div>
+    </div>
+    
+    <div class="auth-decoration">
+      <div class="floating-block grass"></div>
+      <div class="floating-block stone"></div>
+      <div class="floating-block wood"></div>
+      <div class="floating-block diamond"></div>
+    </div>
+  </div>
+  
+  <script src="auth.js"></script>
+</body>
+</html>
+
