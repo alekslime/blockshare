@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - BlockShare</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="minecraft-bg"></div>
+  
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <div class="logo-block"></div>
+        <h1>BlockShare</h1>
+      </a>
+      <nav>
+        <a href="create-post.html" class="btn create-btn">Share Progress</a>
+        <div class="user-nav">
+          <div class="notification-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div class="user-avatar" id="userAvatar">
+            <img src="https://via.placeholder.com/40" alt="User Avatar">
+          </div>
+          <div class="dropdown-menu" id="userMenu">
+            <div class="dropdown-header">
+              <p class="username">SteveCreeper</p>
+              <p class="email">steve@minecraft.net</p>
+            </div>
+            <div class="dropdown-items">
+              <a href="profile.html" class="dropdown-item" id="profileBtn"><i class="fas fa-user"></i> Profile</a>
+              <a href="settings.html" class="dropdown-item" id="settingsBtn"><i class="fas fa-cog"></i> Settings</a>
+              <a href="#" class="dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log out</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container settings-container">
+    <div class="settings-sidebar">
+      <h2>Settings</h2>
+      <ul class="settings-nav">
+        <li><a href="#account" class="settings-nav-item active">Account</a></li>
+        <li><a href="#profile" class="settings-nav-item">Profile</a></li>
+        <li><a href="#notifications" class="settings-nav-item">Notifications</a></li>
+        <li><a href="#privacy" class="settings-nav-item">Privacy</a></li>
+        <li><a href="#appearance" class="settings-nav-item">Appearance</a></li>
+      </ul>
+    </div>
+    
+    <div class="settings-content">
+      <div class="settings-section active" id="account-section">
+        <h2>Account Settings</h2>
+        
+        <form class="settings-form">
+          <div class="form-group">
+            <label for="account-email">Email</label>
+            <input type="email" id="account-email" value="steve@minecraft.net">
+          </div>
+          
+          <div class="form-group">
+            <label for="account-username">Username</label>
+            <input type="text" id="account-username" value="SteveCreeper">
+          </div>
+          
+          <div class="form-divider"></div>
+          
+          <h3>Change Password</h3>
+          
+          <div class="form-group">
+            <label for="current-password">Current Password</label>
+            <input type="password" id="current-password">
+          </div>
+          
+          <div class="form-group">
+            <label for="new-password">New Password</label>
+            <input type="password" id="new-password">
+          </div>
+          
+          <div class="form-group">
+            <label for="confirm-password">Confirm New Password</label>
+            <input type="password" id="confirm-password">
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="settings-section" id="profile-section">
+        <h2>Profile Settings</h2>
+        
+        <form class="settings-form">
+          <div class="form-group">
+            <label>Profile Picture</label>
+            <div class="profile-picture-upload">
+              <img src="https://via.placeholder.com/100" alt="Profile Picture" class="settings-profile-pic">
+              <div class="profile-picture-actions">
+                <button type="button" class="btn btn-outline btn-sm">Upload New</button>
+                <button type="button" class="btn btn-ghost btn-sm">Remove</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Cover Image</label>
+            <div class="cover-image-upload">
+              <img src="https://via.placeholder.com/600x150" alt="Cover Image" class="settings-cover-pic">
+              <div class="cover-image-actions">
+                <button type="button" class="btn btn-outline btn-sm">Upload New</button>
+                <button type="button" class="btn btn-ghost btn-sm">Remove</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="profile-bio">Bio</label>
+            <textarea id="profile-bio" rows="4">Minecraft builder and redstone enthusiast. I love creating medieval structures and complex redstone contraptions!</textarea>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="settings-section" id="notifications-section">
+        <h2>Notification Settings</h2>
+        
+        <form class="settings-form">
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="notify-likes" checked>
+            <label for="notify-likes">Notify me when someone likes my post</label>
+          </div>
+          
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="notify-comments" checked>
+            <label for="notify-comments">Notify me when someone comments on my post</label>
+          </div>
+          
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="notify-follows" checked>
+            <label for="notify-follows">Notify me when someone follows me</label>
+          </div>
+          
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="notify-mentions">
+            <label for="notify-mentions">Notify me when I'm mentioned in a post</label>
+          </div>
+          
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="email-notifications" checked>
+            <label for="email-notifications">Send me email notifications</label>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="settings-section" id="privacy-section">
+        <h2>Privacy Settings</h2>
+        
+        <form class="settings-form">
+          <div class="form-group">
+            <label for="profile-visibility">Profile Visibility</label>
+            <select id="profile-visibility">
+              <option value="public">Public - Anyone can see my profile</option>
+              <option value="followers">Followers Only - Only people who follow me can see my profile</option>
+              <option value="private">Private - Only I can see my profile</option>
+            </select>
+          </div>
+          
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="show-email" checked>
+            <label for="show-email">Show my email on my profile</label>
+          </div>
+          
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="show-online-status" checked>
+            <label for="show-online-status">Show when I'm online</label>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="settings-section" id="appearance-section">
+        <h2>Appearance Settings</h2>
+        
+        <form class="settings-form">
+          <div class="form-group">
+            <label>Theme</label>
+            <div class="theme-options">
+              <div class="theme-option active">
+                <div class="theme-preview light-theme"></div>
+                <span>Light</span>
+              </div>
+              <div class="theme-option">
+                <div class="theme-preview dark-theme"></div>
+                <span>Dark</span>
+              </div>
+              <div class="theme-option">
+                <div class="theme-preview system-theme"></div>
+                <span>System</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      <p>© 2025 BlockShare. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>
+

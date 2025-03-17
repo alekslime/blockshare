@@ -39,6 +39,42 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     }
   
+    // Handle profile button
+    const profileBtn = document.getElementById("profileBtn")
+    if (profileBtn) {
+      profileBtn.addEventListener("click", (e) => {
+        // Check if user is logged in
+        if (!currentUser) {
+          e.preventDefault()
+          showNotification("Please log in to view your profile", "error")
+          setTimeout(() => {
+            window.location.href = "login.html"
+          }, 1500)
+        } else {
+          // The link will work normally and go to profile.html
+          showNotification("Loading your profile...", "info")
+        }
+      })
+    }
+  
+    // Handle settings button
+    const settingsBtn = document.getElementById("settingsBtn")
+    if (settingsBtn) {
+      settingsBtn.addEventListener("click", (e) => {
+        // Check if user is logged in
+        if (!currentUser) {
+          e.preventDefault()
+          showNotification("Please log in to access settings", "error")
+          setTimeout(() => {
+            window.location.href = "login.html"
+          }, 1500)
+        } else {
+          // The link will work normally and go to settings.html
+          showNotification("Loading settings...", "info")
+        }
+      })
+    }
+  
     // Load posts
     const postsContainer = document.getElementById("postsContainer")
     const postTemplate = document.getElementById("postTemplate")
@@ -179,6 +215,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // User is logged in
         if (createPostBtn) {
           createPostBtn.style.display = "block"
+          createPostBtn.href = "create-post.html"
+          createPostBtn.textContent = "Share Progress"
         }
   
         if (userNavContainer) {
