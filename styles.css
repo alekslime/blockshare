@@ -1702,4 +1702,42 @@
     }
   }
   
+  /* Add this to your existing CSS file */
+  
+  /* Empty state styling */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-xl);
+    margin: var(--spacing-xl) 0;
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--color-dirt);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .empty-state i {
+    font-size: 48px;
+    color: var(--color-stone);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .empty-state h3 {
+    font-size: 24px;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .empty-state p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    max-width: 400px;
+  }
+  
+  .empty-state .btn {
+    margin-top: var(--spacing-md);
+  }
+  
   

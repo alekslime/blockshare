@@ -80,126 +80,89 @@ document.addEventListener("DOMContentLoaded", () => {
     const postTemplate = document.getElementById("postTemplate")
   
     if (postsContainer && postTemplate) {
-      // Try to get posts from localStorage first
-      let posts = JSON.parse(localStorage.getItem("blockSharePosts") || "null")
+      // Get posts from localStorage
+      const posts = JSON.parse(localStorage.getItem("blockSharePosts") || "[]")
   
-      // If no posts in localStorage, use sample data
-      if (!posts) {
-        posts = [
-          {
-            id: "1",
-            title: "My Medieval Castle Build",
-            content: "Just finished this castle after 3 weeks of building. What do you think?",
-            image: "https://via.placeholder.com/600x400",
-            author: {
-              name: "DiamondMiner42",
-              avatar: "https://via.placeholder.com/40",
-            },
-            likes: 124,
-            comments: 18,
-            createdAt: "2 hours ago",
-            category: "builds",
-          },
-          {
-            id: "2",
-            title: "Found a triple spawner!",
-            content: "Incredibly lucky find - zombie, skeleton and spider spawners all within 20 blocks!",
-            image: "https://via.placeholder.com/600x400",
-            author: {
-              name: "EnderQueen",
-              avatar: "https://via.placeholder.com/40",
-            },
-            likes: 89,
-            comments: 12,
-            createdAt: "5 hours ago",
-            category: "loot",
-          },
-          {
-            id: "3",
-            title: "Automatic Sugarcane Farm Tutorial",
-            content: "Step-by-step guide to build an efficient sugarcane farm that produces 2000 items/hour",
-            image: "https://via.placeholder.com/600x400",
-            author: {
-              name: "RedstoneWizard",
-              avatar: "https://via.placeholder.com/40",
-            },
-            likes: 215,
-            comments: 34,
-            createdAt: "1 day ago",
-            category: "tutorials",
-          },
-        ]
+      // Check if there are any posts
+      if (posts.length > 0) {
+        // Render posts
+        posts.forEach((post) => {
+          const postElement = postTemplate.content.cloneNode(true)
   
-        // Save to localStorage
-        localStorage.setItem("blockSharePosts", JSON.stringify(posts))
+          // Set post data
+          postElement.querySelector(".author-avatar").src = post.author.avatar
+          postElement.querySelector(".author-avatar").alt = post.author.name
+          postElement.querySelector(".author-name").textContent = post.author.name
+          postElement.querySelector(".author-name").href = `user.html?username=${post.author.name}`
+          postElement.querySelector(".post-time").textContent = post.createdAt
+          postElement.querySelector(".post-category").textContent = post.category
+          postElement.querySelector(".post-image").src = post.image
+          postElement.querySelector(".post-image").alt = post.title
+          postElement.querySelector(".post-title").textContent = post.title
+          postElement.querySelector(".post-text").textContent = post.content
+          postElement.querySelector(".like-count").textContent = post.likes
+          postElement.querySelector(".comment-count").textContent = post.comments
+  
+          // Set links
+          const postLinks = postElement.querySelectorAll(".post-image-container, .post-title-link")
+          postLinks.forEach((link) => {
+            link.href = `post-detail.html?id=${post.id}`
+          })
+  
+          // Add event listeners
+          const likeBtn = postElement.querySelector(".like-btn")
+          likeBtn.addEventListener("click", function () {
+            // Check if user is logged in
+            if (!currentUser) {
+              showNotification("Please log in to like posts", "error")
+              return
+            }
+  
+            this.classList.toggle("active")
+            const likeCount = this.querySelector(".like-count")
+            if (this.classList.contains("active")) {
+              likeCount.textContent = Number.parseInt(likeCount.textContent) + 1
+            } else {
+              likeCount.textContent = Number.parseInt(likeCount.textContent) - 1
+            }
+          })
+  
+          const saveBtn = postElement.querySelector(".save-btn")
+          saveBtn.addEventListener("click", function () {
+            // Check if user is logged in
+            if (!currentUser) {
+              showNotification("Please log in to save posts", "error")
+              return
+            }
+  
+            this.classList.toggle("active")
+  
+            if (this.classList.contains("active")) {
+              showNotification("Post saved to your collection", "success")
+            } else {
+              showNotification("Post removed from your collection", "info")
+            }
+          })
+  
+          // Add post to container with animation
+          const postCard = postElement.querySelector(".post-card")
+          postCard.classList.add("block-appear")
+          postCard.style.animationDelay = `${posts.indexOf(post) * 0.1}s`
+  
+          postsContainer.appendChild(postElement)
+        })
+      } else {
+        // Show empty state
+        const emptyState = document.createElement("div")
+        emptyState.className = "empty-state block-appear"
+        emptyState.innerHTML = `
+          <i class="fas fa-cube"></i>
+          <h3>No Posts Yet</h3>
+          <p>Be the first to share your Minecraft progress!</p>
+          <a href="create-post.html" class="btn btn-primary">Create Post</a>
+        `
+        postsContainer.appendChild(emptyState)
       }
-  
-      // Render posts
-      posts.forEach((post) => {
-        const postElement = postTemplate.content.cloneNode(true)
-  
-        // Set post data
-        postElement.querySelector(".author-avatar").src = post.author.avatar
-        postElement.querySelector(".author-avatar").alt = post.author.name
-        postElement.querySelector(".author-name").textContent = post.author.name
-        postElement.querySelector(".author-name").href = `user.html?username=${post.author.name}`
-        postElement.querySelector(".post-time").textContent = post.createdAt
-        postElement.querySelector(".post-category").textContent = post.category
-        postElement.querySelector(".post-image").src = post.image
-        postElement.querySelector(".post-image").alt = post.title
-        postElement.querySelector(".post-title").textContent = post.title
-        postElement.querySelector(".post-text").textContent = post.content
-        postElement.querySelector(".like-count").textContent = post.likes
-        postElement.querySelector(".comment-count").textContent = post.comments
-  
-        // Set links
-        const postLinks = postElement.querySelectorAll(".post-image-container, .post-title-link")
-        postLinks.forEach((link) => {
-          link.href = `post-detail.html?id=${post.id}`
-        })
-  
-        // Add event listeners
-        const likeBtn = postElement.querySelector(".like-btn")
-        likeBtn.addEventListener("click", function () {
-          // Check if user is logged in
-          if (!currentUser) {
-            showNotification("Please log in to like posts", "error")
-            return
-          }
-  
-          this.classList.toggle("active")
-          const likeCount = this.querySelector(".like-count")
-          if (this.classList.contains("active")) {
-            likeCount.textContent = Number.parseInt(likeCount.textContent) + 1
-          } else {
-            likeCount.textContent = Number.parseInt(likeCount.textContent) - 1
-          }
-        })
-  
-        const saveBtn = postElement.querySelector(".save-btn")
-        saveBtn.addEventListener("click", function () {
-          // Check if user is logged in
-          if (!currentUser) {
-            showNotification("Please log in to save posts", "error")
-            return
-          }
-  
-          this.classList.toggle("active")
-  
-          if (this.classList.contains("active")) {
-            showNotification("Post saved to your collection", "success")
-          } else {
-            showNotification("Post removed from your collection", "info")
-          }
-        })
-  
-        // Add post to container with animation
-        const postCard = postElement.querySelector(".post-card")
-        postCard.classList.add("block-appear")
-        postCard.style.animationDelay = `${posts.indexOf(post) * 0.1}s`
-  
-        postsContainer.appendChild(postElement)
-      })
     }
   })
   
