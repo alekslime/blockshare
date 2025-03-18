@@ -1,154 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlockShare - Minecraft Social Media</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/a076d05399.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <div class="minecraft-bg"></div>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlockShare - Minecraft Social Media</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+<!-- Replace Font Awesome kit with CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<!-- Your Firebase config -->
+<script src="js/firebase.js"></script>
+</head>
+<body>
+<div class="minecraft-bg"></div>
 
-    <header>
-      <div class="container header-container">
-        <a href="index.html" class="logo">
-          <div class="logo-block"></div>
-          <h1>BlockShare</h1>
-        </a>
-        <nav>
-          <a href="create-post.html" class="btn create-btn">Share Progress</a>
-          <div class="user-nav">
-            <div class="notification-icon">
-              <i class="fas fa-bell"></i>
-            </div>
-            <div class="user-avatar" id="userAvatar">
-              <img src="https://via.placeholder.com/40" alt="User Avatar" />
-            </div>
-            <div class="dropdown-menu" id="userMenu">
-              <div class="dropdown-header">
-                <p class="username">SteveCreeper</p>
-                <p class="email">steve@minecraft.net</p>
-              </div>
-              <div class="dropdown-items">
-                <a href="profile.html" class="dropdown-item" id="profileBtn"
-                  ><i class="fas fa-user"></i> Profile</a
-                >
-                <a href="settings.html" class="dropdown-item" id="settingsBtn"
-                  ><i class="fas fa-cog"></i> Settings</a
-                >
-                <a href="#" class="dropdown-item" id="logoutBtn"
-                  ><i class="fas fa-sign-out-alt"></i> Log out</a
-                >
-              </div>
-            </div>
+<header>
+  <div class="container header-container">
+    <a href="index.html" class="logo">
+      <div class="logo-block"></div>
+      <h1>BlockShare</h1>
+    </a>
+    <nav>
+      <a href="create-post.html" class="btn create-btn">Share Progress</a>
+      <div class="user-nav">
+        <div class="notification-icon">
+          <i class="fas fa-bell"></i>
+        </div>
+        <div class="user-avatar" id="userAvatar">
+          <img src="https://placehold.co/40" alt="User Avatar">
+        </div>
+        <div class="dropdown-menu" id="userMenu">
+          <div class="dropdown-header">
+            <p class="username">SteveCreeper</p>
+            <p class="email">steve@minecraft.net</p>
           </div>
-        </nav>
-      </div>
-    </header>
-
-    <main class="container">
-      <div class="content-grid">
-        <aside class="sidebar">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Categories</h3>
-            <div class="sidebar-content">
-              <a href="?category=all" class="sidebar-link active">All Posts</a>
-              <a href="?category=builds" class="sidebar-link">Builds</a>
-              <a href="?category=loot" class="sidebar-link"
-                >Loot & Discoveries</a
-              >
-              <a href="?category=tutorials" class="sidebar-link">Tutorials</a>
-              <a href="?category=redstone" class="sidebar-link">Redstone</a>
-            </div>
-            <div class="sidebar-footer">
-              <button class="btn btn-outline">Browse More</button>
-            </div>
-          </div>
-        </aside>
-
-        <div class="feed">
-          <div class="feed-header">
-            <h2>Recent Posts</h2>
-            <div class="feed-filters">
-              <button class="btn btn-small btn-outline active">Latest</button>
-              <button class="btn btn-small btn-ghost">Popular</button>
-            </div>
-          </div>
-
-          <div class="posts-container" id="postsContainer">
-            <!-- Posts will be loaded here via JavaScript -->
+          <div class="dropdown-items">
+            <a href="profile.html" class="dropdown-item" id="profileBtn"><i class="fas fa-user"></i> Profile</a>
+            <a href="settings.html" class="dropdown-item" id="settingsBtn"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#" class="dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log out</a>
           </div>
         </div>
       </div>
-    </main>
+    </nav>
+  </div>
+</header>
 
-    <footer>
-      <div class="container footer-container">
-        <p>© 2025 BlockShare. All rights reserved.</p>
-        <div class="footer-links">
-          <a href="#">About</a>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+<main class="container">
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3 class="sidebar-title">Categories</h3>
+        <div class="sidebar-content">
+          <a href="?category=all" class="sidebar-link active">All Posts</a>
+          <a href="?category=builds" class="sidebar-link">Builds</a>
+          <a href="?category=loot" class="sidebar-link">Loot & Discoveries</a>
+          <a href="?category=tutorials" class="sidebar-link">Tutorials</a>
+          <a href="?category=redstone" class="sidebar-link">Redstone</a>
+        </div>
+        <div class="sidebar-footer">
+          <button class="btn btn-outline">Browse More</button>
         </div>
       </div>
-    </footer>
+    </aside>
 
-    <template id="postTemplate">
-      <div class="post-card">
-        <div class="post-header">
-          <div class="post-author">
-            <img src="/placeholder.svg" alt="" class="author-avatar" />
-            <div class="author-info">
-              <a href="#" class="author-name"></a>
-              <p class="post-time"></p>
-            </div>
-          </div>
-          <div class="post-category"></div>
-        </div>
-        <a href="#" class="post-image-container">
-          <img src="/placeholder.svg" alt="" class="post-image" />
-        </a>
-        <div class="post-content">
-          <a href="#" class="post-title-link">
-            <h3 class="post-title"></h3>
-          </a>
-          <p class="post-text"></p>
-        </div>
-        <div class="post-footer">
-          <div class="post-actions">
-            <button class="post-action like-btn">
-              <i class="fas fa-heart"></i>
-              <span class="like-count"></span>
-            </button>
-            <button class="post-action comment-btn">
-              <i class="fas fa-comment"></i>
-              <span class="comment-count"></span>
-            </button>
-            <button class="post-action share-btn">
-              <i class="fas fa-share"></i>
-            </button>
-          </div>
-          <button class="post-action save-btn">
-            <i class="fas fa-bookmark"></i>
-          </button>
+    <div class="feed">
+      <div class="feed-header">
+        <h2>Recent Posts</h2>
+        <div class="feed-filters">
+          <button class="btn btn-small btn-outline active">Latest</button>
+          <button class="btn btn-small btn-ghost">Popular</button>
         </div>
       </div>
-    </template>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <!-- Your Firebase config -->
-    <script src="js/firebase.js"></script>
-    <!-- Your app scripts -->
-    <script src="js/scripts.js"></script>
-  </body>
+      <div class="posts-container" id="postsContainer">
+        <!-- Posts will be loaded here via JavaScript -->
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <p>© 2025 BlockShare. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<template id="postTemplate">
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-author">
+        <img src="https://placehold.co/40" alt="" class="author-avatar">
+        <div class="author-info">
+          <a href="#" class="author-name"></a>
+          <p class="post-time"></p>
+        </div>
+      </div>
+      <div class="post-category"></div>
+    </div>
+    <a href="#" class="post-image-container">
+      <img src="https://placehold.co/600x400" alt="" class="post-image">
+    </a>
+    <div class="post-content">
+      <a href="#" class="post-title-link">
+        <h3 class="post-title"></h3>
+      </a>
+      <p class="post-text"></p>
+    </div>
+    <div class="post-footer">
+      <div class="post-actions">
+        <button class="post-action like-btn">
+          <i class="fas fa-heart"></i>
+          <span class="like-count"></span>
+        </button>
+        <button class="post-action comment-btn">
+          <i class="fas fa-comment"></i>
+          <span class="comment-count"></span>
+        </button>
+        <button class="post-action share-btn">
+          <i class="fas fa-share"></i>
+        </button>
+      </div>
+      <button class="post-action save-btn">
+        <i class="fas fa-bookmark"></i>
+      </button>
+    </div>
+  </div>
+</template>
+
+<!-- Your app scripts -->
+<script src="js/scripts.js"></script>
+</body>
 </html>

@@ -1,176 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile - BlockShare</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile - BlockShare</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+<!-- Replace Font Awesome kit with CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<!-- Your Firebase config -->
+<script src="js/firebase.js"></script>
 </head>
 <body>
-  <div class="minecraft-bg"></div>
-  
-  <header>
-    <div class="container header-container">
-      <a href="index.html" class="logo">
-        <div class="logo-block"></div>
-        <h1>BlockShare</h1>
-      </a>
-      <nav>
-        <a href="create-post.html" class="btn create-btn">Share Progress</a>
-        <div class="user-nav">
-          <div class="notification-icon">
-            <i class="fas fa-bell"></i>
-          </div>
-          <div class="user-avatar" id="userAvatar">
-            <img src="https://via.placeholder.com/40" alt="User Avatar">
-          </div>
-          <div class="dropdown-menu" id="userMenu">
-            <div class="dropdown-header">
-              <p class="username">SteveCreeper</p>
-              <p class="email">steve@minecraft.net</p>
-            </div>
-            <div class="dropdown-items">
-              <a href="profile.html" class="dropdown-item" id="profileBtn"><i class="fas fa-user"></i> Profile</a>
-              <a href="settings.html" class="dropdown-item" id="settingsBtn"><i class="fas fa-cog"></i> Settings</a>
-              <a href="#" class="dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log out</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
+<div class="minecraft-bg"></div>
 
-  <main class="container profile-container">
-    <div class="profile-header">
-      <div class="profile-cover">
-        <img src="https://via.placeholder.com/1200x300" alt="Cover Image" class="cover-image">
-        <div class="profile-avatar-container">
-          <img src="https://via.placeholder.com/150" alt="Profile Avatar" id="profileAvatar" class="profile-avatar">
+<header>
+  <div class="container header-container">
+    <a href="index.html" class="logo">
+      <div class="logo-block"></div>
+      <h1>BlockShare</h1>
+    </a>
+    <nav>
+      <a href="create-post.html" class="btn create-btn">Share Progress</a>
+      <div class="user-nav">
+        <div class="notification-icon">
+          <i class="fas fa-bell"></i>
+        </div>
+        <div class="user-avatar" id="userAvatar">
+          <img src="https://placehold.co/40" alt="User Avatar">
+        </div>
+        <div class="dropdown-menu" id="userMenu">
+          <div class="dropdown-header">
+            <p class="username">SteveCreeper</p>
+            <p class="email">steve@minecraft.net</p>
+          </div>
+          <div class="dropdown-items">
+            <a href="profile.html" class="dropdown-item" id="profileBtn"><i class="fas fa-user"></i> Profile</a>
+            <a href="settings.html" class="dropdown-item" id="settingsBtn"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#" class="dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log out</a>
+          </div>
         </div>
       </div>
-      <div class="profile-info">
-        <h1 id="profileUsername">Username</h1>
-        <p id="profileEmail" class="profile-email">email@example.com</p>
-        <div class="profile-stats">
-          <div class="stat">
-            <span class="stat-value">42</span>
-            <span class="stat-label">Posts</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">128</span>
-            <span class="stat-label">Followers</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">64</span>
-            <span class="stat-label">Following</span>
-          </div>
-        </div>
-        <div class="profile-bio">
-          <p>Minecraft builder and redstone enthusiast. I love creating medieval structures and complex redstone contraptions!</p>
-        </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container profile-container">
+  <div class="profile-header">
+    <div class="profile-cover">
+      <img src="https://placehold.co/1200x300" alt="Cover Image" class="cover-image">
+      <div class="profile-avatar-container">
+        <img src="https://placehold.co/150" alt="Profile Avatar" id="profileAvatar" class="profile-avatar">
       </div>
     </div>
-
-    <div class="profile-tabs">
-      <button class="tab-btn active" data-tab="posts">Posts</button>
-      <button class="tab-btn" data-tab="saved">Saved</button>
-      <button class="tab-btn" data-tab="about">About</button>
-    </div>
-
-    <div class="profile-content">
-      <div class="tab-content active" id="posts-tab">
-        <div class="posts-grid" id="userPostsContainer">
-          <!-- User posts will be loaded here -->
-          <div class="post-grid-item">
-            <img src="https://via.placeholder.com/300" alt="Post image" class="post-grid-image">
-            <div class="post-grid-overlay">
-              <div class="post-grid-stats">
-                <span><i class="fas fa-heart"></i> 24</span>
-                <span><i class="fas fa-comment"></i> 5</span>
-              </div>
-            </div>
-          </div>
-          <div class="post-grid-item">
-            <img src="https://via.placeholder.com/300" alt="Post image" class="post-grid-image">
-            <div class="post-grid-overlay">
-              <div class="post-grid-stats">
-                <span><i class="fas fa-heart"></i> 42</span>
-                <span><i class="fas fa-comment"></i> 12</span>
-              </div>
-            </div>
-          </div>
-          <div class="post-grid-item">
-            <img src="https://via.placeholder.com/300" alt="Post image" class="post-grid-image">
-            <div class="post-grid-overlay">
-              <div class="post-grid-stats">
-                <span><i class="fas fa-heart"></i> 18</span>
-                <span><i class="fas fa-comment"></i> 3</span>
-              </div>
-            </div>
-          </div>
+    <div class="profile-info">
+      <h1 id="profileUsername">Username</h1>
+      <p id="profileEmail" class="profile-email">email@example.com</p>
+      <div class="profile-stats">
+        <div class="stat">
+          <span class="stat-value">42</span>
+          <span class="stat-label">Posts</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">128</span>
+          <span class="stat-label">Followers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">64</span>
+          <span class="stat-label">Following</span>
         </div>
       </div>
-      
-      <div class="tab-content" id="saved-tab">
-        <div class="posts-grid" id="savedPostsContainer">
-          <!-- Saved posts will be loaded here -->
-          <div class="post-grid-item">
-            <img src="https://via.placeholder.com/300" alt="Post image" class="post-grid-image">
-            <div class="post-grid-overlay">
-              <div class="post-grid-stats">
-                <span><i class="fas fa-heart"></i> 87</span>
-                <span><i class="fas fa-comment"></i> 15</span>
-              </div>
-            </div>
-          </div>
-          <div class="post-grid-item">
-            <img src="https://via.placeholder.com/300" alt="Post image" class="post-grid-image">
-            <div class="post-grid-overlay">
-              <div class="post-grid-stats">
-                <span><i class="fas fa-heart"></i> 56</span>
-                <span><i class="fas fa-comment"></i> 8</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="tab-content" id="about-tab">
-        <div class="about-section">
-          <h2>About Me</h2>
-          <p>Minecraft player since Beta 1.7.3. I specialize in medieval architecture and redstone contraptions. When I'm not building in Minecraft, I'm probably designing my next big project!</p>
-          
-          <h3>Favorite Builds</h3>
-          <ul>
-            <li>Medieval Castle with Working Drawbridge</li>
-            <li>Automatic Sorting System</li>
-            <li>Underground Survival Base</li>
-            <li>Nether Hub with Ice Boat Roads</li>
-          </ul>
-          
-          <h3>Contact</h3>
-          <p>Discord: DiamondMiner42#1234</p>
-          <p>YouTube: MinecraftBuilderPro</p>
-        </div>
+      <div class="profile-bio">
+        <p>Minecraft builder and redstone enthusiast. I love creating medieval structures and complex redstone contraptions!</p>
       </div>
     </div>
-  </main>
+  </div>
 
-  <footer>
-    <div class="container footer-container">
-      <p>© 2025 BlockShare. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">About</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+  <div class="profile-tabs">
+    <button class="tab-btn active" data-tab="posts">Posts</button>
+    <button class="tab-btn" data-tab="saved">Saved</button>
+    <button class="tab-btn" data-tab="about">About</button>
+  </div>
+
+  <div class="profile-content">
+    <div class="tab-content active" id="posts-tab">
+      <div class="posts-grid" id="userPostsContainer">
+        <!-- User posts will be loaded here -->
       </div>
     </div>
-  </footer>
+    
+    <div class="tab-content" id="saved-tab">
+      <div class="posts-grid" id="savedPostsContainer">
+        <!-- Saved posts will be loaded here -->
+      </div>
+    </div>
+    
+    <div class="tab-content" id="about-tab">
+      <div class="about-section">
+        <h2>About Me</h2>
+        <p>Minecraft player since Beta 1.7.3. I specialize in medieval architecture and redstone contraptions. When I'm not building in Minecraft, I'm probably designing my next big project!</p>
+        
+        <h3>Favorite Builds</h3>
+        <ul>
+          <li>Medieval Castle with Working Drawbridge</li>
+          <li>Automatic Sorting System</li>
+          <li>Underground Survival Base</li>
+          <li>Nether Hub with Ice Boat Roads</li>
+        </ul>
+        
+        <h3>Contact</h3>
+        <p>Discord: DiamondMiner42#1234</p>
+        <p>YouTube: MinecraftBuilderPro</p>
+      </div>
+    </div>
+  </div>
+</main>
 
-  <script src="scripts.js"></script>
-  <script src="profile.js"></script>
+<footer>
+  <div class="container footer-container">
+    <p>© 2025 BlockShare. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/scripts.js"></script>
+<script src="js/profile.js"></script>
 </body>
 </html>
-

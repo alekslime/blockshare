@@ -1,84 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - BlockShare</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - BlockShare</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+<!-- Replace Font Awesome kit with CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<!-- Your Firebase config -->
+<script src="js/firebase.js"></script>
 </head>
 <body class="auth-page">
-  <div class="minecraft-bg"></div>
-  
-  <div class="auth-container">
-    <div class="auth-card block-appear">
-      <div class="auth-header">
-        <a href="index.html" class="logo auth-logo">
-          <div class="logo-block"></div>
-          <h1>BlockShare</h1>
-        </a>
-        <p class="auth-subtitle">Join the Minecraft community today!</p>
-      </div>
+<div class="minecraft-bg"></div>
+
+<div class="auth-container">
+  <div class="auth-card block-appear">
+    <div class="auth-header">
+      <a href="index.html" class="logo auth-logo">
+        <div class="logo-block"></div>
+        <h1>BlockShare</h1>
+      </a>
+      <p class="auth-subtitle">Join the Minecraft community today!</p>
+    </div>
+    
+    <div class="auth-content">
+      <h2>Create Your Account</h2>
       
-      <div class="auth-content">
-        <h2>Create Your Account</h2>
+      <div class="auth-options">
+        <button id="googleSignUpBtn" class="btn btn-google">
+          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" class="google-icon">
+          <span>Sign up with Google</span>
+        </button>
         
-        <div class="auth-options">
-          <button id="googleSignUpBtn" class="btn btn-google">
-            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" class="google-icon">
-            <span>Sign up with Google</span>
-          </button>
-          
-          <div class="auth-divider">
-            <span>or</span>
+        <div class="auth-divider">
+          <span>or</span>
+        </div>
+        
+        <form id="signupForm" class="auth-form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="DiamondMiner42" required>
           </div>
           
-          <form id="signupForm" class="auth-form">
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" id="username" name="username" placeholder="DiamondMiner42" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="steve@minecraft.net" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" id="password" name="password" placeholder="••••••••" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="confirmPassword">Confirm Password</label>
-              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
-            </div>
-            
-            <div class="form-group form-checkbox">
-              <input type="checkbox" id="terms" name="terms" required>
-              <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
-            </div>
-            
-            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-          </form>
-        </div>
-      </div>
-      
-      <div class="auth-footer">
-        <p>Already have an account? <a href="login.html">Login</a></p>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="steve@minecraft.net" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
+          </div>
+          
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+        </form>
       </div>
     </div>
     
-    <div class="auth-decoration">
-      <div class="floating-block grass"></div>
-      <div class="floating-block stone"></div>
-      <div class="floating-block wood"></div>
-      <div class="floating-block diamond"></div>
+    <div class="auth-footer">
+      <p>Already have an account? <a href="login.html">Login</a></p>
     </div>
   </div>
   
-  <script src="auth.js"></script>
+  <div class="auth-decoration">
+    <div class="floating-block grass"></div>
+    <div class="floating-block stone"></div>
+    <div class="floating-block wood"></div>
+    <div class="floating-block diamond"></div>
+  </div>
+</div>
+
+<script src="js/auth.js"></script>
 </body>
 </html>
-

@@ -4,18 +4,126 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Post Detail - BlockShare</title>
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="styles.css">
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
-<body>
-<!-- Your existing HTML content -->
-
+<!-- Replace Font Awesome kit with CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <!-- Your Firebase config -->
 <script src="js/firebase.js"></script>
+</head>
+<body>
+<div class="minecraft-bg"></div>
+
+<header>
+  <div class="container header-container">
+    <a href="index.html" class="logo">
+      <div class="logo-block"></div>
+      <h1>BlockShare</h1>
+    </a>
+    <nav>
+      <a href="create-post.html" class="btn create-btn">Share Progress</a>
+      <div class="user-nav">
+        <div class="notification-icon">
+          <i class="fas fa-bell"></i>
+        </div>
+        <div class="user-avatar">
+          <img src="https://placehold.co/40" alt="User Avatar">
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container post-detail-container">
+  <div class="post-detail-card">
+    <div class="post-detail-header">
+      <div class="post-author">
+        <img src="https://placehold.co/40" alt="" class="author-avatar" id="postAuthorAvatar">
+        <div class="author-info">
+          <a href="#" class="author-name" id="postAuthorName"></a>
+          <p class="post-time" id="postTime"></p>
+        </div>
+      </div>
+      <div class="post-category" id="postCategory"></div>
+    </div>
+    <h1 class="post-detail-title" id="postTitle"></h1>
+    <div class="post-detail-image-container">
+      <img src="https://placehold.co/600x400" alt="" class="post-detail-image" id="postImage">
+    </div>
+    <div class="post-detail-content">
+      <p id="postContent"></p>
+    </div>
+    <div class="post-detail-footer">
+      <div class="post-actions">
+        <button class="post-action like-btn" id="likeBtn">
+          <i class="fas fa-heart"></i>
+          <span class="like-count" id="likeCount"></span>
+        </button>
+        <button class="post-action comment-btn">
+          <i class="fas fa-comment"></i>
+          <span class="comment-count" id="commentCount"></span>
+        </button>
+        <button class="post-action share-btn">
+          <i class="fas fa-share"></i>
+        </button>
+      </div>
+      <button class="post-action save-btn" id="saveBtn">
+        <i class="fas fa-bookmark"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="comments-section">
+    <h2>Comments</h2>
+    <div class="comment-form-card">
+      <div class="comment-form">
+        <img src="https://placehold.co/40" alt="Your Avatar" class="comment-avatar">
+        <div class="comment-input-container">
+          <textarea placeholder="Add a comment..." class="comment-input" id="commentInput"></textarea>
+          <button class="btn btn-primary" id="postCommentBtn">Post Comment</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="comments-list" id="commentsList">
+      <!-- Comments will be loaded here via JavaScript -->
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <p>© 2025 BlockShare. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<template id="commentTemplate">
+  <div class="comment-card">
+    <div class="comment-header">
+      <img src="https://placehold.co/40" alt="" class="comment-avatar">
+      <div class="comment-info">
+        <div class="comment-author-row">
+          <a href="#" class="comment-author"></a>
+          <span class="comment-time"></span>
+        </div>
+        <p class="comment-text"></p>
+        <button class="comment-like-btn">
+          <i class="fas fa-heart"></i>
+          <span class="comment-like-count"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
 <!-- Your app scripts -->
 <script src="js/post-detail.js"></script>
 </body>
